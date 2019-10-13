@@ -42,8 +42,17 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
         values.put(DBContract.DBEntry.COLUMN_NAME_VALUE, node.getValue());
         values.put(DBContract.DBEntry.COLUMN_NAME_DATE, node.getDate());
         values.put(DBContract.DBEntry.COLUMN_NAME_NEXT, node.getNext().getId());
-
+        db.close();
         long newRowID = db.insert(DBContract.DBEntry.TABLE_NAME, null, values);
+    }
+
+    public int deleteNode(Node node) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = DBContract.DBEntry.COLUMN_NAME_VALUE + " LIKE?";
+        String[] selectionArgs = { node.getValue() };
+        int deletedRows = db.delete(DBContract.DBEntry.TABLE_NAME, selection, selectionArgs);
+        db.close();
+        return deletedRows;
     }
 
     public HashMap<Integer, Long> listOrdering() {
@@ -74,6 +83,7 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
         }
 
         cursor.close();
+        db.close();
         return result;
     }
 
@@ -116,6 +126,8 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
             Long ID = order.get(i);
             result.add(tempMap.get(ID));
         }
+
+        db.close();
         return result;
     }
 }
