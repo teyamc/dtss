@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Organizer</string>
+    <string name="grocery_list">Grocery List</string>
+    <string name="check_box">This is where you can add in stuff for the list until is become full. You can also add in a second line if it goes too long.</string>
 </resources>
