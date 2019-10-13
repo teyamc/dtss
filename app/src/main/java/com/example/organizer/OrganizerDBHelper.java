@@ -47,7 +47,7 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
     }
 
     public HashMap<Integer, Long> listOrdering() {
-        HashMap<Integer, Long> result = new HashMap<Integer, Long>;
+        HashMap<Integer, Long> result = new HashMap<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
         String sortOrder = DBContract.DBEntry.COLUMN_NAME_ORDER + " ASC";
