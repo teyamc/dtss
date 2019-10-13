@@ -2,9 +2,15 @@ package com.example.organizer;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
+import android.util.Base64;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrganizerDBHelper extends SQLiteOpenHelper {
     private static final int DATABSE_VERSION = 1;
@@ -32,7 +38,7 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insert(Node node) {
+    public void insertNode(Node node) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(DBContract.DBEntry.COLUMN_NAME_VALUE, node.getValue());
@@ -40,5 +46,44 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
         values.put(DBContract.DBEntry.COLUMN_NAME_NEXT, node.getNext().getId());
 
         long newRowID = db.insert(DBContract.DBEntry.TABLE_NAME, null, values);
+    }
+
+    public ToDoList readNode(int ID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] columns = {
+                BaseColumns._ID,
+                DBContract.DBEntry.COLUMN_NAME_VALUE,
+                DBContract.DBEntry.COLUMN_NAME_DATE,
+                DBContract.DBEntry.COLUMN_NAME_NEXT
+        };
+
+        String sortOrder = DBContract.DBEntry.COLUMN_NAME_DATE + " DESC";
+
+        Cursor cursor = db.query(
+                DBContract.DBEntry.TABLE_NAME,
+                columns,
+                null,
+                null,
+                null,
+                null,
+                sortOrder
+        );
+
+        List itemIDs = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            long itemID = cursor.getLong(cursor.getColumnIndexOrThrow(DBContract.DBEntry._ID));
+            itemIDs.add(itemID);
+        }
+
+
+        ToDoList result = new ToDoList();
+        while (cursor.moveToNext()) {
+            Node node = new Node();
+            node.setId(node, cursor.getLong(cursor.getColumnIndexOrThrow(DBContract.DBEntry._ID)));
+            node.setValue(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_VALUE)));
+            node.setDate(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_DATE)));
+            // node.setNext(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_NEXT)));
+        }
     }
 }
