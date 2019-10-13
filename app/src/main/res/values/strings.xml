@@ -8,6 +8,10 @@
     <string name="tester_button_1">tester button 1</string>
     <string name="tester_2">tester 2</string>
     <string name="tester_button_2">tester button 2</string>
+    <string name="checkbox">CheckBox</string>
+    <string name="checkBox">hello there is a lot of text in here and I don\'t know if it\'s going to wrap so I\'m going to check it out now tada</string>
+    <string name="checkbox2">Ok here\'s another item to be added</string>
+    <string name="button2">Button</string>
 
 
 </resources>
