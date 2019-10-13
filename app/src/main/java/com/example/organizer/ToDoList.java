@@ -1,5 +1,7 @@
 package com.example.organizer;
-
+import android.widget.AdapterView;
+import android.widget.TextView;
+import android.widget.CheckBox;
 
 // Organizes a list of items in a To-Do List
 public class ToDoList {

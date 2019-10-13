@@ -22,6 +22,7 @@
     <string name="list_4">List 4</string>
     <string name="checkbox">CheckBox</string>
     <string name="checkbox6">CheckBox</string>
+    <string name="add_item">Add Item</string>
 
 
 </resources>
