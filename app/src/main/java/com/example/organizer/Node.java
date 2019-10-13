@@ -4,14 +4,13 @@ import java.util.*;
 // Node class for the to-do lists
 public class Node {
     private long id; // ID of the node
-    private int position; // The position of the item in the list
     private String value; // The text stored in the item
     private String date; // The date of the to-do item
     private Set<String> tag; // The tag of the to-do item
     private Node next; // The next item in the to-do list
 
     // Creates a node given a value
-    public Node(String value) {
+    public Node(String value, int order) {
         this.value = value;
     }
 
@@ -20,9 +19,6 @@ public class Node {
         this.value = null;
     }
 
-    public void setId(Node item, Long id) {
-        item.id = id;
-    }
     // Sets the value of the given item to the given item
     public void setValue(Node item, String value) {
         item.value = value;
@@ -35,7 +31,6 @@ public class Node {
 
     // Not yet implemented
     public void setTag(Node item, Set<String> tag) {
-
     }
 
     // Sets the next given the item and the next item
