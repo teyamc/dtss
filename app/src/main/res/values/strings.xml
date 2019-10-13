@@ -8,6 +8,7 @@
     <string name="tester_button_1">tester button 1</string>
     <string name="tester_2">tester 2</string>
     <string name="tester_button_2">tester button 2</string>
+    <string name="checkbox">CheckBox</string>
 
 
 </resources>
