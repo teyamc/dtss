@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
         Button b1 = (Button) findViewById(R.id.add_item);
         b1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                
+                EditText txtname = findViewById(R.id.input_text);
+                String name = txtname.getText().toString();
             }
         });
     }
