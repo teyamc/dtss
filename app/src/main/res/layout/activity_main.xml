@@ -127,7 +127,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/checkbox" />
+                android:text="hello there is a lot of text in here and I don't know if it's going to wrap so I'm going to check it out now" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
