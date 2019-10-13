@@ -11,14 +11,15 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public ToDoList list;
+    OrganizerDBHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //helper = new OrganizerDBHelper(this);
+        //list = helper.readList();
         list = new ToDoList();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        OrganizerDBHelper helper = new OrganizerDBHelper(this);
 
         Button b1 = (Button) findViewById(R.id.add_item);
         b1.setOnClickListener(new View.OnClickListener() {
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void makeListItem(String value) {
-        list.add(new Node(value));
+        Node node = new Node(value);
+        list.add(node);
+        //helper.insertNode(node);
     }
 }
