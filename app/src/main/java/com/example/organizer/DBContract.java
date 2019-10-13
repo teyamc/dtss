@@ -9,7 +9,7 @@ public final class DBContract implements BaseColumns {
     public static class DBEntry implements BaseColumns {
         public static final String TABLE_NAME = "tasks";
         public static final String COLUMN_NAME_VALUE = "value";
-        public static final Date COLUMN_NAME_DATE = null;
+        public static final String COLUMN_NAME_DATE = null;
         public static final String COLUMN_NAME_NEXT = "next";
     }
 }

@@ -32,10 +32,13 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insert() {
+    public void insert(Node node) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        // values.put(DBContract.DBEntry.COLUMN_NAME_VALUE, null);
+        values.put(DBContract.DBEntry.COLUMN_NAME_VALUE, node.getValue());
+        values.put(DBContract.DBEntry.COLUMN_NAME_DATE, node.getDate());
+        values.put(DBContract.DBEntry.COLUMN_NAME_NEXT, node.getNext().getId());
 
+        long newRowID = db.insert(DBContract.DBEntry.TABLE_NAME, null, values);
     }
 }

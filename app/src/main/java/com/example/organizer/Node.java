@@ -5,7 +5,7 @@ import java.util.*;
 public class Node {
     private int id; // ID of the node
     private String value; // The text stored in the item
-    private Date date; // The date of the to-do item
+    private String date; // The date of the to-do item
     private Set<String> tag; // The tag of the to-do item
     private Node next; // The next item in the to-do list
 
@@ -25,7 +25,7 @@ public class Node {
     }
 
     // Sets the date of the given item to the given date
-    public void setDate(Node item, Date date) {
+    public void setDate(Node item, String date) {
         item.date = date;
     }
 
@@ -39,13 +39,16 @@ public class Node {
         item.next = next;
     }
 
+    // Returns the id of the node
+    public int getId() { return this.id; }
+
     // Returns the value of the node
     public String getValue() {
         return this.value;
     }
 
     // Returns the date of the node
-    public Date getDate() {
+    public String getDate() {
         return this.date;
     }
 
