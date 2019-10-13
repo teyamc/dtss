@@ -13,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         OrganizerDBHelper helper = new OrganizerDBHelper(this);
-
+        ToDoList toDoList = helper.readList();
     }
 }
