@@ -7,10 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
-import android.util.Base64;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class OrganizerDBHelper extends SQLiteOpenHelper {
     private static final int DATABSE_VERSION = 1;
@@ -48,25 +46,20 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
         long newRowID = db.insert(DBContract.DBEntry.TABLE_NAME, null, values);
     }
 
-    public Node readNode(Long ID) {
-
-    }
-
-    public ToDoList readList(int ID) {
+    public HashMap<Integer, Long> listOrdering() {
+        HashMap<Integer, Long> result = new HashMap<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] columns = {
-                BaseColumns._ID,
-                DBContract.DBEntry.COLUMN_NAME_VALUE,
-                DBContract.DBEntry.COLUMN_NAME_DATE,
-                DBContract.DBEntry.COLUMN_NAME_NEXT
-        };
+        String sortOrder = DBContract.DBEntry.COLUMN_NAME_ORDER + " ASC";
 
-        String sortOrder = DBContract.DBEntry.COLUMN_NAME_DATE + " DESC";
+        String[] orderColumns = {
+                BaseColumns._ID,
+                DBContract.DBEntry.COLUMN_NAME_ORDER
+        };
 
         Cursor cursor = db.query(
                 DBContract.DBEntry.TABLE_NAME,
-                columns,
+                orderColumns,
                 null,
                 null,
                 null,
@@ -74,20 +67,55 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
                 sortOrder
         );
 
-        List itemIDs = new ArrayList<>();
         while (cursor.moveToNext()) {
-            long itemID = cursor.getLong(cursor.getColumnIndexOrThrow(DBContract.DBEntry._ID));
-            itemIDs.add(itemID);
+            Long itemID = cursor.getLong(cursor.getColumnIndexOrThrow(DBContract.DBEntry._ID));
+            Integer itemOrder = cursor.getInt(cursor.getColumnIndexOrThrow(DBContract.DBEntry.COLUMN_NAME_ORDER));
+            result.put(itemOrder, itemID);
         }
 
+        cursor.close();
+        return result;
+    }
 
-        ToDoList result = new ToDoList();
+    public ToDoList readList() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sortOrder = DBContract.DBEntry.COLUMN_NAME_DATE + " DESC";
+
+        String[] columns = {
+            BaseColumns._ID,
+            DBContract.DBEntry.COLUMN_NAME_VALUE,
+            DBContract.DBEntry.COLUMN_NAME_DATE,
+            DBContract.DBEntry.COLUMN_NAME_NEXT
+        };
+
+        Cursor cursor = db.query(
+            DBContract.DBEntry.TABLE_NAME,
+            columns,
+            null,
+            null,
+            null,
+            null,
+            sortOrder
+        );
+
+        HashMap<Integer, Long> order = listOrdering();
+
+        HashMap<Long, Node> tempMap = new HashMap<>();
         while (cursor.moveToNext()) {
             Node node = new Node();
             node.setId(node, cursor.getLong(cursor.getColumnIndexOrThrow(DBContract.DBEntry._ID)));
             node.setValue(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_VALUE)));
             node.setDate(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_DATE)));
-            node.setNext(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_NEXT)));
+            // node.setNext(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_NEXT)));
+            tempMap.put(node.getId(), node);
         }
+
+        ToDoList result = new ToDoList();
+        for (int i = 0; i < order.size() - 1; i++) {
+            Long ID = order.get(i);
+            result.add(tempMap.get(ID));
+        }
+        return result;
     }
 }
