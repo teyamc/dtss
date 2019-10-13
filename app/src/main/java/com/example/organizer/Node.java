@@ -3,7 +3,7 @@ import java.util.*;
 
 // Node class for the to-do lists
 public class Node {
-    private int id; // ID of the node
+    private long id; // ID of the node
     private int order;
     private String value; // The text stored in the item
     private String date; // The date of the to-do item
@@ -35,6 +35,10 @@ public class Node {
         item.date = date;
     }
 
+    public void setId(Node item, long id) {
+        item.id = id;
+    }
+
     // Not yet implemented
     public void setTag(Node item, Set<String> tag) {
     }
@@ -46,7 +50,7 @@ public class Node {
     }
 
     // Returns the id of the node
-    public int getId() { return this.id; }
+    public long getId() { return this.id; }
 
     // Returns the value of the node
     public String getValue() {
