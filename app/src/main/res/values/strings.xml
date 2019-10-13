@@ -24,6 +24,8 @@
     <string name="checkbox6">CheckBox</string>
     <string name="add_item">Add Item</string>
     <string name="add_new_task">Add new task</string>
+    <string name="hint">hint</string>
+    <string name="add_new_item">Add new item</string>
 
 
 </resources>
