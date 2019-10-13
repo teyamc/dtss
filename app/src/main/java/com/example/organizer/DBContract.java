@@ -11,5 +11,6 @@ public final class DBContract implements BaseColumns {
         public static final String COLUMN_NAME_VALUE = "value";
         public static final String COLUMN_NAME_DATE = "date";
         public static final String COLUMN_NAME_NEXT = "next";
+        public static final String COLUMN_NAME_ORDER = "order";
     }
 }
