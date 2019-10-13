@@ -20,14 +20,13 @@ public class ToDoList {
         this.back = null;
         this.size = 0;
 }
-
-    // Adds an item to the To-Do List
-    public void add(String value) {
+    // Adds an item to the To-Do list
+    public void add(Node item) {
         if (front == null) {
-            front = new Node(value);
+            front = item;
             back = front;
         } else {
-            back.setNext(back, new Node(value));
+            back.setNext(back, item);
             back = back.getNext();
         }
         this.size++;
@@ -69,6 +68,7 @@ public class ToDoList {
                 curr = curr.getNext();
             }
             prev.setNext(prev.getNext(), curr.getNext());
+            this.size--;
         } else {
             throw new IllegalArgumentException();
         }
@@ -81,6 +81,4 @@ public class ToDoList {
         this.back = null;
         this.size = 0;
     }
-
-
 }
