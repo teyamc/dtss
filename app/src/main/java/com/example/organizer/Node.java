@@ -10,7 +10,7 @@ public class Node {
     private Node next; // The next item in the to-do list
 
     // Creates a node given a value
-    public Node(String value, int order) {
+    public Node(String value) {
         this.value = value;
     }
 
