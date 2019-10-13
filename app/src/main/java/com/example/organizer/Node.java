@@ -43,7 +43,6 @@ public class Node {
         item.next = next;
     }
 
-
     // Returns the id of the node
     public long getId() { return this.id; }
 

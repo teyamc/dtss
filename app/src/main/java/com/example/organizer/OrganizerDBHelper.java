@@ -48,7 +48,11 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
         long newRowID = db.insert(DBContract.DBEntry.TABLE_NAME, null, values);
     }
 
-    public ToDoList readNode(int ID) {
+    public Node readNode(Long ID) {
+
+    }
+
+    public ToDoList readList(int ID) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] columns = {
@@ -83,7 +87,7 @@ public class OrganizerDBHelper extends SQLiteOpenHelper {
             node.setId(node, cursor.getLong(cursor.getColumnIndexOrThrow(DBContract.DBEntry._ID)));
             node.setValue(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_VALUE)));
             node.setDate(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_DATE)));
-            // node.setNext(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_NEXT)));
+            node.setNext(node, cursor.getString(cursor.getColumnIndex(DBContract.DBEntry.COLUMN_NAME_NEXT)));
         }
     }
 }
