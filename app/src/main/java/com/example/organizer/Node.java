@@ -29,6 +29,11 @@ public class Node {
         item.date = date;
     }
 
+    // Sets the id of the given item using the given id
+    public void setId(Node item, long id) {
+        item.id = id;
+    }
+
     // Not yet implemented
     public void setTag(Node item, Set<String> tag) {
     }
