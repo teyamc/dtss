@@ -12,6 +12,16 @@
     <string name="checkBox">hello there is a lot of text in here and I don\'t know if it\'s going to wrap so I\'m going to check it out now tada</string>
     <string name="checkbox2">Ok here\'s another item to be added</string>
     <string name="button2">Button</string>
+    <string name="all_lists">All Lists</string>
+    <string name="checkbox_Main1">CheckBox</string>
+    <string name="checkbox_Main2">CheckBox</string>
+    <string name="text_Main2">List 1</string>
+    <string name="text_Main1">List 2</string>
+    <string name="checkbox">CheckBox</string>
+    <string name="list_3">List 3</string>
+    <string name="list_4">List 4</string>
+    <string name="checkbox">CheckBox</string>
+    <string name="checkbox6">CheckBox</string>
 
 
 </resources>

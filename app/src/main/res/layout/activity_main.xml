@@ -26,14 +26,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/recyclerView"
-        android:layout_width="374dp"
-        android:layout_height="544dp"
+        android:layout_width="381dp"
+        android:layout_height="590dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintVertical_bias="0.525">
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:id="@+id/linearLayout"
