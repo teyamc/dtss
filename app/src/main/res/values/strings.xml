@@ -23,6 +23,7 @@
     <string name="checkbox">CheckBox</string>
     <string name="checkbox6">CheckBox</string>
     <string name="add_item">Add Item</string>
+    <string name="add_new_task">Add new task</string>
 
 
 </resources>
