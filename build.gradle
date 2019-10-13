@@ -25,3 +25,7 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+dependencies {
+    compile 'com.aurelhubert:ahbottomnavigation:0.1.3'
+}
